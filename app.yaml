@@ -1,54 +1,54 @@
-    # https://stackoverflow.com/questions/39782506/deploying-basic-angular-2-app-to-google-app-engine?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-    service: stage
-    runtime: python27
-    api_version: 1
-    threadsafe: true
+# https://stackoverflow.com/questions/39782506/deploying-basic-angular-2-app-to-google-app-engine/50494337#50494337
+service: stage
+runtime: python27
+api_version: 1
+threadsafe: true
 
-    skip_files:
-    - ^(?!dist)  # Skip any files not in the dist/nicu-tools folder
+skip_files:
+- ^(?!dist)  # Skip any files not in the dist/nicu-tools folder
 
-    handlers:
-    # Routing for bundles to serve directly
-    - url: /((?:runtime|main|polyfills|styles|vendor)\.[a-z0-9]+\.js)
-      secure: always
-      redirect_http_response_code: 301
-      static_files: dist/nicu-tools/\1
-      upload: dist/nicu-tools/.*
+handlers:
+# Routing for bundles to serve directly
+- url: /((?:runtime|main|polyfills|styles|vendor)\.[a-z0-9]+\.js)
+  secure: always
+  redirect_http_response_code: 301
+  static_files: dist/nicu-tools/\1
+  upload: dist/nicu-tools/.*
 
-    # Routing for bundle maps to serve directly
-    - url: /((?:runtime|main|polyfills|styles|vendor)\.[a-z0-9]+\.js\.map)
-      secure: always
-      redirect_http_response_code: 301
-      static_files: dist/nicu-tools/\1
-      upload: dist/nicu-tools/.*
+# Routing for bundle maps to serve directly
+- url: /((?:runtime|main|polyfills|styles|vendor)\.[a-z0-9]+\.js\.map)
+  secure: always
+  redirect_http_response_code: 301
+  static_files: dist/nicu-tools/\1
+  upload: dist/nicu-tools/.*
 
-    # Routing for a prod styles.bundle.css to serve directly
-    - url: /(styles\.[a-z0-9]+\.css)
-      secure: always
-      redirect_http_response_code: 301
-      static_files: dist/nicu-tools/\1
-      upload: dist/nicu-tools/.*
+# Routing for a prod styles.bundle.css to serve directly
+- url: /(styles\.[a-z0-9]+\.css)
+  secure: always
+  redirect_http_response_code: 301
+  static_files: dist/nicu-tools/\1
+  upload: dist/nicu-tools/.*
 
-    # Routing for typedoc, assets, and favicon.ico to serve directly
-    - url: /((?:assets|docs)/.*|favicon\.ico)
-      secure: always
-      redirect_http_response_code: 301
-      static_files: dist/nicu-tools/\1
-      upload: dist/nicu-tools/.*
+# Routing for typedoc, assets, and favicon.ico to serve directly
+- url: /((?:assets|docs)/.*|favicon\.ico)
+  secure: always
+  redirect_http_response_code: 301
+  static_files: dist/nicu-tools/\1
+  upload: dist/nicu-tools/.*
 
-    # Routing for service worker files serve directly
-    - url: /(manifest\.json|ngsw\.json|ngsw-worker\.js|safety-worker\.js|worker-basic\.min\.js)
-      secure: always
-      redirect_http_response_code: 301
-      static_files: dist/nicu-tools/\1
-      upload: dist/nicu-tools/.*
+# Routing for service worker files serve directly
+- url: /(manifest\.json|ngsw\.json|ngsw-worker\.js|safety-worker\.js|worker-basic\.min\.js|ngsw_worker\.es6\.js\.map)
+  secure: always
+  redirect_http_response_code: 301
+  static_files: dist/nicu-tools/\1
+  upload: dist/nicu-tools/.*
 
-    # Any other requests are routed to index.html for angular to handle so we don't need hash URLs
-    - url: /.*
-      secure: always
-      redirect_http_response_code: 301
-      static_files: dist/nicu-tools/index.html
-      upload: dist/nicu-tools/index\.html
-      http_headers:
-        Strict-Transport-Security: max-age=31536000; includeSubDomains
-        X-Frame-Options: DENY
+# Any other requests are routed to index.html for angular to handle so we don't need hash URLs
+- url: /.*
+  secure: always
+  redirect_http_response_code: 301
+  static_files: dist/nicu-tools/index.html
+  upload: dist/nicu-tools/index\.html
+  http_headers:
+    Strict-Transport-Security: max-age=31536000; includeSubDomains
+    X-Frame-Options: DENY
