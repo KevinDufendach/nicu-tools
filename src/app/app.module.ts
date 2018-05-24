@@ -9,10 +9,15 @@ import { PreEclampsiaCalcComponent } from './pre-eclampsia-calc/pre-eclampsia-ca
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
+  MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { ToolsDashboardComponent } from './tools-dashboard/tools-dashboard.component';
+import { ToolsTableComponent } from './tools-table/tools-table.component';
 
 const appRoutes: Routes = [
   {path: 'pre-e', component: PreEclampsiaCalcComponent},
+  {path: 'dashboard', component: ToolsDashboardComponent},
+  {path: 'table', component: ToolsTableComponent},
   {path: '', redirectTo: '/pre-e', pathMatch: 'full'}
 ];
 
@@ -20,7 +25,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     PreEclampsiaCalcComponent,
-    MainNavComponent
+    MainNavComponent,
+    ToolsDashboardComponent,
+    ToolsTableComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +42,13 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
